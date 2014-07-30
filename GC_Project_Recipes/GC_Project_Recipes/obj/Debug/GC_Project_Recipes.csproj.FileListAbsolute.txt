@@ -25,3 +25,4 @@ C:\Users\Grand\Documents\GitHub\GCTeamProject\GC_Project_Recipes\GC_Project_Reci
 C:\Users\Grand\Documents\GitHub\GCTeamProject\GC_Project_Recipes\GC_Project_Recipes\bin\Newtonsoft.Json.xml
 C:\Users\Grand\Documents\GitHub\GCTeamProject\GC_Project_Recipes\GC_Project_Recipes\obj\Debug\GC_Project_Recipes.dll
 C:\Users\Grand\Documents\GitHub\GCTeamProject\GC_Project_Recipes\GC_Project_Recipes\obj\Debug\GC_Project_Recipes.pdb
+C:\Users\Grand\Documents\GitHub\GCTeamProject\GC_Project_Recipes\GC_Project_Recipes\obj\Debug\GC_Project_Recipes.csprojResolveAssemblyReference.cache
