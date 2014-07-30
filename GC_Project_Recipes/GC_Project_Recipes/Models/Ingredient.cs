@@ -16,12 +16,12 @@ namespace GC_Project_Recipes.Models
     {
         public Ingredient()
         {
-            this.Ingred_Recipe = new HashSet<Ingred_Recipe>();
+            this.Meal_Type = new HashSet<Meal_Type>();
         }
     
         public int Ingred_ID { get; set; }
         public string Ingred_Name { get; set; }
     
-        public virtual ICollection<Ingred_Recipe> Ingred_Recipe { get; set; }
+        public virtual ICollection<Meal_Type> Meal_Type { get; set; }
     }
 }

@@ -25,8 +25,8 @@ namespace GC_Project_Recipes.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Ingred_Recipe> Ingred_Recipe { get; set; }
         public DbSet<Ingredient> Ingredients { get; set; }
+        public DbSet<Meal_Type> Meal_Type { get; set; }
         public DbSet<Recipe> Recipes { get; set; }
     }
 }

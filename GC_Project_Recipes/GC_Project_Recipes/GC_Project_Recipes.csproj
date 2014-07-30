@@ -142,7 +142,7 @@
     <Compile Include="Models\Ingredient.cs">
       <DependentUpon>CookBookModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Ingred_Recipe.cs">
+    <Compile Include="Models\Meal_Type.cs">
       <DependentUpon>CookBookModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Recipe.cs">

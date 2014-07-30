@@ -14,11 +14,6 @@ namespace GC_Project_Recipes.Models
     
     public partial class Recipe
     {
-        public Recipe()
-        {
-            this.Ingred_Recipe = new HashSet<Ingred_Recipe>();
-        }
-    
         public int Recipe_ID { get; set; }
         public string Prep_Time { get; set; }
         public string Cook_Time { get; set; }
@@ -26,7 +21,8 @@ namespace GC_Project_Recipes.Models
         public string Ingred_List { get; set; }
         public string Instructions { get; set; }
         public Nullable<decimal> Ingred_Amt { get; set; }
+        public Nullable<int> Type_FK { get; set; }
     
-        public virtual ICollection<Ingred_Recipe> Ingred_Recipe { get; set; }
+        public virtual Meal_Type Meal_Type { get; set; }
     }
 }

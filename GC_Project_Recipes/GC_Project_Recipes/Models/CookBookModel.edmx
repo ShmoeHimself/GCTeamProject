@@ -4,22 +4,21 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="RecipeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Ingred_Recipe">
-          <Key>
-            <PropertyRef Name="Recipe_ID" />
-            <PropertyRef Name="Ingred_ID" />
-          </Key>
-          <Property Name="Recipe_ID" Type="int" Nullable="false" />
-          <Property Name="Ingred_ID" Type="int" Nullable="false" />
-          <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
-        </EntityType>
+    <Schema Namespace="RecipeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Ingredients">
           <Key>
             <PropertyRef Name="Ingred_ID" />
           </Key>
           <Property Name="Ingred_ID" Type="int" Nullable="false" />
           <Property Name="Ingred_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Meal_Type">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="int" Nullable="false" />
+          <Property Name="Type_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ingred_FK" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
@@ -32,67 +31,67 @@
           <Property Name="Ingred_List" Type="text" />
           <Property Name="Instructions" Type="text" />
           <Property Name="Ingred_Amt" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Type_FK" Type="int" />
         </EntityType>
-        <Association Name="FK_Ingred_Recipe_Ingredients">
+        <Association Name="FK_Meal_Type_Ingredients">
           <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
-          <End Role="Ingred_Recipe" Type="Self.Ingred_Recipe" Multiplicity="*" />
+          <End Role="Meal_Type" Type="Self.Meal_Type" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingredients">
               <PropertyRef Name="Ingred_ID" />
             </Principal>
-            <Dependent Role="Ingred_Recipe">
-              <PropertyRef Name="Ingred_ID" />
+            <Dependent Role="Meal_Type">
+              <PropertyRef Name="Ingred_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Ingred_Recipe_Recipe">
-          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
-          <End Role="Ingred_Recipe" Type="Self.Ingred_Recipe" Multiplicity="*" />
+        <Association Name="FK_Recipe_Meal_Type">
+          <End Role="Meal_Type" Type="Self.Meal_Type" Multiplicity="0..1" />
+          <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Recipe">
-              <PropertyRef Name="Recipe_ID" />
+            <Principal Role="Meal_Type">
+              <PropertyRef Name="Type_ID" />
             </Principal>
-            <Dependent Role="Ingred_Recipe">
-              <PropertyRef Name="Recipe_ID" />
+            <Dependent Role="Recipe">
+              <PropertyRef Name="Type_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RecipeDBModelStoreContainer">
-          <EntitySet Name="Ingred_Recipe" EntityType="Self.Ingred_Recipe" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Meal_Type" EntityType="Self.Meal_Type" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Ingred_Recipe_Ingredients" Association="Self.FK_Ingred_Recipe_Ingredients">
+          <AssociationSet Name="FK_Meal_Type_Ingredients" Association="Self.FK_Meal_Type_Ingredients">
             <End Role="Ingredients" EntitySet="Ingredients" />
-            <End Role="Ingred_Recipe" EntitySet="Ingred_Recipe" />
+            <End Role="Meal_Type" EntitySet="Meal_Type" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ingred_Recipe_Recipe" Association="Self.FK_Ingred_Recipe_Recipe">
+          <AssociationSet Name="FK_Recipe_Meal_Type" Association="Self.FK_Recipe_Meal_Type">
+            <End Role="Meal_Type" EntitySet="Meal_Type" />
             <End Role="Recipe" EntitySet="Recipe" />
-            <End Role="Ingred_Recipe" EntitySet="Ingred_Recipe" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="RecipeDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Ingred_Recipe">
-          <Key>
-            <PropertyRef Name="Recipe_ID" />
-            <PropertyRef Name="Ingred_ID" />
-          </Key>
-          <Property Name="Recipe_ID" Type="Int32" Nullable="false" />
-          <Property Name="Ingred_ID" Type="Int32" Nullable="false" />
-          <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ingredient" Relationship="Self.FK_Ingred_Recipe_Ingredients" FromRole="Ingred_Recipe" ToRole="Ingredients" />
-          <NavigationProperty Name="Recipe" Relationship="Self.FK_Ingred_Recipe_Recipe" FromRole="Ingred_Recipe" ToRole="Recipe" />
-        </EntityType>
         <EntityType Name="Ingredient">
           <Key>
             <PropertyRef Name="Ingred_ID" />
           </Key>
           <Property Name="Ingred_ID" Type="Int32" Nullable="false" />
           <Property Name="Ingred_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Ingred_Recipe" Relationship="Self.FK_Ingred_Recipe_Ingredients" FromRole="Ingredients" ToRole="Ingred_Recipe" />
+          <NavigationProperty Name="Meal_Type" Relationship="Self.FK_Meal_Type_Ingredients" FromRole="Ingredients" ToRole="Meal_Type" />
+        </EntityType>
+        <EntityType Name="Meal_Type">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="Int32" Nullable="false" />
+          <Property Name="Type_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Recipe_FK" Type="Int32" Nullable="false" />
+          <Property Name="Ingred_FK" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ingredient" Relationship="Self.FK_Meal_Type_Ingredients" FromRole="Meal_Type" ToRole="Ingredients" />
+          <NavigationProperty Name="Recipes" Relationship="RecipeDBModel.FK_Recipe_Meal_Type" FromRole="Meal_Type" ToRole="Recipe" />
         </EntityType>
         <EntityType Name="Recipe">
           <Key>
@@ -105,60 +104,52 @@
           <Property Name="Ingred_List" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Instructions" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Ingred_Amt" Type="Decimal" Precision="18" Scale="0" />
-          <NavigationProperty Name="Ingred_Recipe" Relationship="Self.FK_Ingred_Recipe_Recipe" FromRole="Recipe" ToRole="Ingred_Recipe" />
+          <Property Name="Type_FK" Type="Int32" />
+          <NavigationProperty Name="Meal_Type" Relationship="RecipeDBModel.FK_Recipe_Meal_Type" FromRole="Recipe" ToRole="Meal_Type" />
         </EntityType>
-        <Association Name="FK_Ingred_Recipe_Ingredients">
+        <Association Name="FK_Meal_Type_Ingredients">
           <End Role="Ingredients" Type="Self.Ingredient" Multiplicity="1" />
-          <End Role="Ingred_Recipe" Type="Self.Ingred_Recipe" Multiplicity="*" />
+          <End Role="Meal_Type" Type="Self.Meal_Type" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ingredients">
               <PropertyRef Name="Ingred_ID" />
             </Principal>
-            <Dependent Role="Ingred_Recipe">
-              <PropertyRef Name="Ingred_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Ingred_Recipe_Recipe">
-          <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
-          <End Role="Ingred_Recipe" Type="Self.Ingred_Recipe" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Recipe">
-              <PropertyRef Name="Recipe_ID" />
-            </Principal>
-            <Dependent Role="Ingred_Recipe">
-              <PropertyRef Name="Recipe_ID" />
+            <Dependent Role="Meal_Type">
+              <PropertyRef Name="Ingred_FK" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="RecipeDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Ingred_Recipe" EntityType="Self.Ingred_Recipe" />
           <EntitySet Name="Ingredients" EntityType="Self.Ingredient" />
+          <EntitySet Name="Meal_Type" EntityType="Self.Meal_Type" />
           <EntitySet Name="Recipes" EntityType="Self.Recipe" />
-          <AssociationSet Name="FK_Ingred_Recipe_Ingredients" Association="Self.FK_Ingred_Recipe_Ingredients">
+          <AssociationSet Name="FK_Meal_Type_Ingredients" Association="Self.FK_Meal_Type_Ingredients">
             <End Role="Ingredients" EntitySet="Ingredients" />
-            <End Role="Ingred_Recipe" EntitySet="Ingred_Recipe" />
+            <End Role="Meal_Type" EntitySet="Meal_Type" />
           </AssociationSet>
-          <AssociationSet Name="FK_Ingred_Recipe_Recipe" Association="Self.FK_Ingred_Recipe_Recipe">
+          <AssociationSet Name="FK_Recipe_Meal_Type" Association="RecipeDBModel.FK_Recipe_Meal_Type">
+            <End Role="Meal_Type" EntitySet="Meal_Type" />
             <End Role="Recipe" EntitySet="Recipes" />
-            <End Role="Ingred_Recipe" EntitySet="Ingred_Recipe" />
           </AssociationSet>
         </EntityContainer>
+        <Association Name="FK_Recipe_Meal_Type">
+          <End Type="RecipeDBModel.Meal_Type" Role="Meal_Type" Multiplicity="0..1" />
+          <End Type="RecipeDBModel.Recipe" Role="Recipe" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Meal_Type">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Recipe">
+              <PropertyRef Name="Type_FK" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="RecipeDBModelStoreContainer" CdmEntityContainer="RecipeDBEntities">
-          <EntitySetMapping Name="Ingred_Recipe">
-            <EntityTypeMapping TypeName="RecipeDBModel.Ingred_Recipe">
-              <MappingFragment StoreEntitySet="Ingred_Recipe">
-                <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
-                <ScalarProperty Name="Ingred_ID" ColumnName="Ingred_ID" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Ingredients">
             <EntityTypeMapping TypeName="RecipeDBModel.Ingredient">
               <MappingFragment StoreEntitySet="Ingredients">
@@ -167,9 +158,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Meal_Type">
+            <EntityTypeMapping TypeName="RecipeDBModel.Meal_Type">
+              <MappingFragment StoreEntitySet="Meal_Type">
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Type_Name" ColumnName="Type_Name" />
+                <ScalarProperty Name="Ingred_FK" ColumnName="Ingred_FK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Recipes">
             <EntityTypeMapping TypeName="RecipeDBModel.Recipe">
               <MappingFragment StoreEntitySet="Recipe">
+                <ScalarProperty Name="Type_FK" ColumnName="Type_FK" />
                 <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
                 <ScalarProperty Name="Prep_Time" ColumnName="Prep_Time" />
                 <ScalarProperty Name="Cook_Time" ColumnName="Cook_Time" />

@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="866b7d01654544fe8b98a7617cf294fe" Name="Diagram1">
-        <EntityTypeShape EntityType="RecipeDBModel.Ingred_Recipe" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecipeDBModel.Ingredient" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecipeDBModel.Recipe" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <AssociationConnector Association="RecipeDBModel.FK_Ingred_Recipe_Ingredients" ManuallyRouted="false" />
-        <AssociationConnector Association="RecipeDBModel.FK_Ingred_Recipe_Recipe" ManuallyRouted="false" />
+      <Diagram DiagramId="94d95f3a743d47b495480cb0f1b129f2" Name="Diagram1">
+        <EntityTypeShape EntityType="RecipeDBModel.Ingredient" Width="1.5" PointX="0.625" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecipeDBModel.Meal_Type" Width="1.5" PointX="3.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecipeDBModel.Recipe" Width="1.5" PointX="6.375" PointY="0.5" IsExpanded="true" />
+        <AssociationConnector Association="RecipeDBModel.FK_Meal_Type_Ingredients" ManuallyRouted="false" />
+        <AssociationConnector Association="RecipeDBModel.FK_Recipe_Meal_Type" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

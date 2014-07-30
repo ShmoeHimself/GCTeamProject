@@ -12,13 +12,19 @@ namespace GC_Project_Recipes.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Ingred_Recipe
+    public partial class Meal_Type
     {
-        public int Recipe_ID { get; set; }
-        public int Ingred_ID { get; set; }
-        public string Type { get; set; }
+        public Meal_Type()
+        {
+            this.Recipes = new HashSet<Recipe>();
+        }
+    
+        public int Type_ID { get; set; }
+        public string Type_Name { get; set; }
+        public int Recipe_FK { get; set; }
+        public int Ingred_FK { get; set; }
     
         public virtual Ingredient Ingredient { get; set; }
-        public virtual Recipe Recipe { get; set; }
+        public virtual ICollection<Recipe> Recipes { get; set; }
     }
 }

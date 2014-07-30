@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="RecipeDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Ingred_Recipe">
-    <Key>
-      <PropertyRef Name="Recipe_ID" />
-      <PropertyRef Name="Ingred_ID" />
-    </Key>
-    <Property Name="Recipe_ID" Type="int" Nullable="false" />
-    <Property Name="Ingred_ID" Type="int" Nullable="false" />
-    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
-  </EntityType>
   <EntityType Name="Ingredients">
     <Key>
       <PropertyRef Name="Ingred_ID" />
     </Key>
     <Property Name="Ingred_ID" Type="int" Nullable="false" />
     <Property Name="Ingred_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Meal_Type">
+    <Key>
+      <PropertyRef Name="Type_ID" />
+    </Key>
+    <Property Name="Type_ID" Type="int" Nullable="false" />
+    <Property Name="Type_Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Ingred_FK" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Recipe">
     <Key>
@@ -27,42 +26,43 @@
     <Property Name="Ingred_List" Type="text" />
     <Property Name="Instructions" Type="text" />
     <Property Name="Ingred_Amt" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Type_FK" Type="int" />
   </EntityType>
-  <Association Name="FK_Ingred_Recipe_Ingredients">
+  <Association Name="FK_Meal_Type_Ingredients">
     <End Role="Ingredients" Type="Self.Ingredients" Multiplicity="1" />
-    <End Role="Ingred_Recipe" Type="Self.Ingred_Recipe" Multiplicity="*" />
+    <End Role="Meal_Type" Type="Self.Meal_Type" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Ingredients">
         <PropertyRef Name="Ingred_ID" />
       </Principal>
-      <Dependent Role="Ingred_Recipe">
-        <PropertyRef Name="Ingred_ID" />
+      <Dependent Role="Meal_Type">
+        <PropertyRef Name="Ingred_FK" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Ingred_Recipe_Recipe">
-    <End Role="Recipe" Type="Self.Recipe" Multiplicity="1" />
-    <End Role="Ingred_Recipe" Type="Self.Ingred_Recipe" Multiplicity="*" />
+  <Association Name="FK_Recipe_Meal_Type">
+    <End Role="Meal_Type" Type="Self.Meal_Type" Multiplicity="0..1" />
+    <End Role="Recipe" Type="Self.Recipe" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Recipe">
-        <PropertyRef Name="Recipe_ID" />
+      <Principal Role="Meal_Type">
+        <PropertyRef Name="Type_ID" />
       </Principal>
-      <Dependent Role="Ingred_Recipe">
-        <PropertyRef Name="Recipe_ID" />
+      <Dependent Role="Recipe">
+        <PropertyRef Name="Type_FK" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="RecipeDBModelStoreContainer">
-    <EntitySet Name="Ingred_Recipe" EntityType="Self.Ingred_Recipe" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Ingredients" EntityType="Self.Ingredients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Meal_Type" EntityType="Self.Meal_Type" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Recipe" EntityType="Self.Recipe" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Ingred_Recipe_Ingredients" Association="Self.FK_Ingred_Recipe_Ingredients">
+    <AssociationSet Name="FK_Meal_Type_Ingredients" Association="Self.FK_Meal_Type_Ingredients">
       <End Role="Ingredients" EntitySet="Ingredients" />
-      <End Role="Ingred_Recipe" EntitySet="Ingred_Recipe" />
+      <End Role="Meal_Type" EntitySet="Meal_Type" />
     </AssociationSet>
-    <AssociationSet Name="FK_Ingred_Recipe_Recipe" Association="Self.FK_Ingred_Recipe_Recipe">
+    <AssociationSet Name="FK_Recipe_Meal_Type" Association="Self.FK_Recipe_Meal_Type">
+      <End Role="Meal_Type" EntitySet="Meal_Type" />
       <End Role="Recipe" EntitySet="Recipe" />
-      <End Role="Ingred_Recipe" EntitySet="Ingred_Recipe" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
