@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="RecipeDBModelStoreContainer" CdmEntityContainer="RecipeDBEntities">
+    <EntitySetMapping Name="Ingred_Recipe">
+      <EntityTypeMapping TypeName="RecipeDBModel.Ingred_Recipe">
+        <MappingFragment StoreEntitySet="Ingred_Recipe">
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="Ingred_ID" ColumnName="Ingred_ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ingredients">
+      <EntityTypeMapping TypeName="RecipeDBModel.Ingredient">
+        <MappingFragment StoreEntitySet="Ingredients">
+          <ScalarProperty Name="Ingred_ID" ColumnName="Ingred_ID" />
+          <ScalarProperty Name="Ingred_Name" ColumnName="Ingred_Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipes">
+      <EntityTypeMapping TypeName="RecipeDBModel.Recipe">
+        <MappingFragment StoreEntitySet="Recipe">
+          <ScalarProperty Name="Recipe_ID" ColumnName="Recipe_ID" />
+          <ScalarProperty Name="Prep_Time" ColumnName="Prep_Time" />
+          <ScalarProperty Name="Cook_Time" ColumnName="Cook_Time" />
+          <ScalarProperty Name="Servings" ColumnName="Servings" />
+          <ScalarProperty Name="Ingred_List" ColumnName="Ingred_List" />
+          <ScalarProperty Name="Instructions" ColumnName="Instructions" />
+          <ScalarProperty Name="Ingred_Amt" ColumnName="Ingred_Amt" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

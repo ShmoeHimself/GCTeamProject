@@ -124,29 +124,29 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CookBookModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CookBookModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CookBookModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CookBookModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CookBookModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CookBookModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\Ingredient.cs">
-      <DependentUpon>RecipeProjectDataModel.tt</DependentUpon>
+      <DependentUpon>CookBookModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Ingred_Recipe.cs">
-      <DependentUpon>RecipeProjectDataModel.tt</DependentUpon>
+      <DependentUpon>CookBookModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Recipe.cs">
-      <DependentUpon>RecipeProjectDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RecipeProjectDataModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RecipeProjectDataModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RecipeProjectDataModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RecipeProjectDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RecipeProjectDataModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>RecipeProjectDataModel.edmx</DependentUpon>
+      <DependentUpon>CookBookModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -159,22 +159,22 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\RecipeProjectDataModel.edmx">
+    <EntityDeploy Include="Models\CookBookModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>RecipeProjectDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CookBookModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\RecipeProjectDataModel.Context.tt">
+    <Content Include="Models\CookBookModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RecipeProjectDataModel.edmx</DependentUpon>
-      <LastGenOutput>RecipeProjectDataModel.Context.cs</LastGenOutput>
+      <DependentUpon>CookBookModel.edmx</DependentUpon>
+      <LastGenOutput>CookBookModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\RecipeProjectDataModel.edmx.diagram">
-      <DependentUpon>RecipeProjectDataModel.edmx</DependentUpon>
+    <Content Include="Models\CookBookModel.edmx.diagram">
+      <DependentUpon>CookBookModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\RecipeProjectDataModel.tt">
+    <Content Include="Models\CookBookModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>RecipeProjectDataModel.edmx</DependentUpon>
-      <LastGenOutput>RecipeProjectDataModel.cs</LastGenOutput>
+      <DependentUpon>CookBookModel.edmx</DependentUpon>
+      <LastGenOutput>CookBookModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

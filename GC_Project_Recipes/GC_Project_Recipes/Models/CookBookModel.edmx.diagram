@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e055ba76089d4c3ea0c265de4e54fee1" Name="Diagram1">
+      <Diagram DiagramId="866b7d01654544fe8b98a7617cf294fe" Name="Diagram1">
         <EntityTypeShape EntityType="RecipeDBModel.Ingred_Recipe" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="RecipeDBModel.Ingredient" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="RecipeDBModel.Recipe" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="RecipeDBModel.Recipe" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
         <AssociationConnector Association="RecipeDBModel.FK_Ingred_Recipe_Ingredients" ManuallyRouted="false" />
         <AssociationConnector Association="RecipeDBModel.FK_Ingred_Recipe_Recipe" ManuallyRouted="false" />
       </Diagram>
